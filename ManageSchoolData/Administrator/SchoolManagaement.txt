@@ -1,0 +1,83 @@
+package Administrator;
+import java.util.*;
+// 1 school object
+// administrator
+    // school.startSession("2023-24")
+    // school.CurrentSession
+    // school.createClass("grade", "section")
+    // school.enrollStudent("name","other details", "standard") => roll number
+    // school.assignStudentToClass(rollnumber, "grade" , "section")
+    // school.getStorageLocation("attendence")
+
+// class teacher
+    // school.getMyClass("grade", "section")
+    // myClass.createAttendenceRegisterIfNotAvailable("class" , "section" , "acesdemic-session")
+    // myClassRegister.addStudentNames(school.enrolledStudentList("grade", "section"))
+    //      add student names sorted by their names
+    //      if two students have same name, give them serial number
+    // myClassRegister.recordAttence("date", "roll number", "status")
+    // myClassRegister.giveMeattendenceSummary()
+    //  [{date: 11 sep, p: 3, a: 4}, {date: 11 sep, p: 3, a: 4} , {date: 11 sep, p: 3, a: 4}]
+    // 2023-24/10a/studentlist.txt
+    // 2023-24/10a/attence-2023-09-12.txt
+
+
+
+class Persister
+{
+    private HashMap<String, String> datastore = new HashMap<String, String>();
+    
+    public Persister(){}
+    public void Store(String id, String data, boolean append) {
+        if (append) {
+            if (datastore.containsKey(id)) {
+                String oldData = datastore.get(id);
+                String newData = oldData + data;
+                datastore.put(id, newData);
+            } else {
+                datastore.put(id, data);
+            }
+        } else {
+            datastore.put(id, data);
+
+        }
+}
+
+    public String Retrieve(String id)
+    {
+        return "";
+    }
+}
+
+class School
+{
+    private static School school = new School();
+    private String session = null;
+    private School(){}
+    public static School getInstance ()
+    {
+        return school;
+    }
+    
+    public String getSession()
+    {
+        return session;
+    }
+    
+    public void StartNewSession()
+    {
+        session = "2023-24";
+    }
+    
+}
+
+public class Administrator
+{
+	public static void main(String[] args) {
+	    School mySchool = School.getInstance();
+	    mySchool.StartNewSession();
+		System.out.println(mySchool.getSession());
+	}
+}
+
+make code according to the Comments 
